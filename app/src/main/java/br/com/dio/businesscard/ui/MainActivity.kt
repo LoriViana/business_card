@@ -3,16 +3,23 @@ package br.com.dio.businesscard.ui
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import br.com.dio.businesscard.App
+import br.com.dio.businesscard.data.domain.BackgroundCards
+import br.com.dio.businesscard.data.remote.BusinessCardApi
 import br.com.dio.businesscard.databinding.ActivityMainBinding
 import br.com.dio.businesscard.util.Image
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as App).repository)
     }
@@ -21,11 +28,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         setUpPermissions()
         binding.rvCards.adapter = adapter
         getAllBusinessCard()
         insertListeners()
     }
+
+
 
     private fun setUpPermissions() {
         // write permission to access the storage

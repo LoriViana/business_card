@@ -13,6 +13,6 @@ interface BusinessCardDao {
     fun getAll(): LiveData<List<BusinessCard>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(businessCard: BusinessCard)
+    fun insert(businessCard: BusinessCard)
 
 }
