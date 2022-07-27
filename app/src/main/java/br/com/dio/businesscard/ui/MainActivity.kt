@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvCards.adapter = adapter
         getAllBusinessCard()
         insertListeners()
+        setupBackgroundRefresh()
     }
 
 
@@ -57,10 +58,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAllBusinessCard() {
+        binding.srlBusinessCards.isRefreshing= true
+
         mainViewModel.getAll().observe(this, { businessCards ->
             adapter.submitList(businessCards)
+            binding.srlBusinessCards.isRefreshing= false
         })
-    }
 
+    }
+    private fun setupBackgroundRefresh() {
+        binding.srlBusinessCards.setOnRefreshListener{this.getAllBusinessCard()}
+
+    }
 
 }

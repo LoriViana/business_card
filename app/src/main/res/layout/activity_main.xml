@@ -21,6 +21,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlBusinessCards"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cards"
         android:layout_width="match_parent"
@@ -32,6 +38,8 @@
         tools:itemCount="8"
 
         tools:listitem="@layout/item_business_card" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

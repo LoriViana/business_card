@@ -36,7 +36,7 @@ class BusinessCardAdapter :
         //Carrregamento das informações no card gravado no banco local
 
         fun bind(item: BusinessCard) {
-           val corfonte: String
+           var corfonte: String
            val fundoPersonalizado: String
 
             //testar o item cor
@@ -46,13 +46,24 @@ class BusinessCardAdapter :
             }
             else corfonte= item.corTexto.toString()
 
+
             if (item.fundoPersonalizado.toString().isEmpty()) {
                 fundoPersonalizado = "https://loriviana.github.io/business-card-api/imagem/01.jpg"
             }
             else fundoPersonalizado= item.fundoPersonalizado.toString()
 
             binding.tvNome.text = item.nome
-            binding.tvNome.setTextColor(Color.parseColor(corfonte))
+
+            try {
+                binding.tvNome.setTextColor(Color.parseColor(corfonte))
+
+             }  catch (e: IllegalArgumentException) {
+                corfonte = "#081e54"
+             }
+
+
+
+                binding.tvNome.setTextColor(Color.parseColor(corfonte))
             binding.tvTelefone.text = item.telefone
             binding.tvTelefone.setTextColor(Color.parseColor(corfonte))
             binding.tvEmail.text = item.email
@@ -62,13 +73,6 @@ class BusinessCardAdapter :
 
             Picasso.get().load(item.fundoPersonalizado).fit().into(binding.ivPersonalizado)
 
-
-//            try {
-//                binding.cdContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalizado))
-//
-//            }  catch (e: IllegalArgumentException) {
-//                binding.cdContent.setCardBackgroundColor(Color.parseColor("#E53935"))
-//            }
             binding.cdContent.setOnClickListener {
                 listenerShare(it)
             }
