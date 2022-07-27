@@ -11,8 +11,8 @@
 
     <application
         android:name=".App"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_cards"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_cards_foreground"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_cards_round"
         android:supportsRtl="true"
@@ -20,7 +20,8 @@
 
         <activity android:name=".ui.AddBusinessCardActivity" />
         <activity android:name=".ui.BackgroundCardsActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

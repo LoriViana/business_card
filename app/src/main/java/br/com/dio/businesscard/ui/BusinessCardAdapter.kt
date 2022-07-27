@@ -1,6 +1,5 @@
 package br.com.dio.businesscard.ui
 
-import android.R.color
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.businesscard.data.BusinessCard
 import br.com.dio.businesscard.databinding.ItemBusinessCardBinding
+import com.squareup.picasso.Picasso
 
 
 class BusinessCardAdapter :
@@ -26,26 +26,49 @@ class BusinessCardAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+
     }
 
     inner class ViewHolder(
         private val binding: ItemBusinessCardBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        //Carrregamento das informações no card
+        //Carrregamento das informações no card gravado no banco local
+
         fun bind(item: BusinessCard) {
-            binding.tvNome.text = item.nome
-            binding.tvTelefone.text = item.telefone
-            binding.tvEmail.text = item.email
-            binding.tvNomeEmpresa.text = item.empresa
+           val corfonte: String
+           val fundoPersonalizado: String
 
+            //testar o item cor
 
-            try {
-                binding.cdContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalizado))
-
-            }  catch (e: IllegalArgumentException) {
-                binding.cdContent.setCardBackgroundColor(Color.parseColor("#E53935"))
+            if (item.corTexto.toString().isEmpty()){
+                corfonte = "#081e54"
             }
+            else corfonte= item.corTexto.toString()
+
+            if (item.fundoPersonalizado.toString().isEmpty()) {
+                fundoPersonalizado = "https://loriviana.github.io/business-card-api/imagem/01.jpg"
+            }
+            else fundoPersonalizado= item.fundoPersonalizado.toString()
+
+            binding.tvNome.text = item.nome
+            binding.tvNome.setTextColor(Color.parseColor(corfonte))
+            binding.tvTelefone.text = item.telefone
+            binding.tvTelefone.setTextColor(Color.parseColor(corfonte))
+            binding.tvEmail.text = item.email
+            binding.tvEmail.setTextColor(Color.parseColor(corfonte))
+            binding.tvNomeEmpresa.text = item.empresa
+            binding.tvNomeEmpresa.setTextColor(Color.parseColor(corfonte))
+
+            Picasso.get().load(item.fundoPersonalizado).fit().into(binding.ivPersonalizado)
+
+
+//            try {
+//                binding.cdContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalizado))
+//
+//            }  catch (e: IllegalArgumentException) {
+//                binding.cdContent.setCardBackgroundColor(Color.parseColor("#E53935"))
+//            }
             binding.cdContent.setOnClickListener {
                 listenerShare(it)
             }

@@ -1,9 +1,11 @@
 package br.com.dio.businesscard.ui
 
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,26 +14,19 @@ import br.com.dio.businesscard.R
 import br.com.dio.businesscard.data.BusinessCard
 import br.com.dio.businesscard.data.TipoBackground
 import br.com.dio.businesscard.databinding.ActivityAddBusinessCardBinding
-import br.com.dio.businesscard.ui.BackgroundCardsActivity.Companion.NAME
+import com.squareup.picasso.Picasso
 
 
 class AddBusinessCardActivity : AppCompatActivity() {
 
 
-    public lateinit var fundocartao:String
+    private  var fundocartao="https://loriviana.github.io/business-card-api/imagem/01.jpg"
+    private var corFonte= "#081e54"
 
     private val binding by lazy { ActivityAddBusinessCardBinding.inflate(layoutInflater) }
 
-    private val responseLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult ->
-        if (activityResult.resultCode == RESULT_OK){
 
-            val name = activityResult.data?.getStringExtra(NAME).orEmpty()
-            Toast.makeText(this,name,Toast.LENGTH_SHORT).show()
-        }else{
-        Toast.makeText(this,"NO :(",Toast.LENGTH_SHORT).show()
-    }
-
-    }
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as App).repository)    }
@@ -41,43 +36,47 @@ class AddBusinessCardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-       // binding.btnSelecaoBackground.setOnClickListener {
-       // val intent = Intent(this, BackgroundCardsActivity::class.java)
-       // responseLauncher.launch(intent)
+            resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+                if(result.resultCode == RESULT_OK){
+                    result.data?.apply {
 
-       //     }
+                        var backgroundTipo= this.getSerializableExtra("RETURN") as TipoBackground
 
-        insertListeners()
+                        fundocartao = backgroundTipo.link.toString()
+                        corFonte=  backgroundTipo.cor.toString()
+                    }
+                }
+            }
+            insertListeners()
     }
 
-
-    private fun insertListeners() {
-        var corpadrao: String
+     override fun onResume() {
+        super.onResume()
 
         binding.btnSelecaoBackground.setOnClickListener{
 
-            val intent = Intent(this, BackgroundCardsActivity::class.java)
-            startActivity(intent)
+        val intent = Intent(this, BackgroundCardsActivity::class.java)
+            resultLauncher.launch(intent)
         }
+    }
 
+
+
+    private fun insertListeners() {
 
         binding.btnConfirm.setOnClickListener {
 
-           if (binding.tilCor.editText?.text.toString().isEmpty()) {
-               corpadrao= "#FF03DAC5"
 
-           } else {
-               corpadrao= binding.tilCor.editText?.text.toString()
-           }
-            //recebendo valor que o usário digitar na tela de adição de card
-            //criação da entidade
+            // Dados recebidos da digitação pelo usuário
 
             val businessCard = BusinessCard(
                 nome = binding.tilNome.editText?.text.toString(),
                 empresa = binding.tilEmpresa.editText?.text.toString(),
                 telefone = binding.tilTelefone.editText?.text.toString(),
                 email = binding.tilEmail.editText?.text.toString(),
-              fundoPersonalizado =corpadrao
+
+                fundoPersonalizado =fundocartao,
+                corTexto = corFonte
            )
 
             mainViewModel.insert(businessCard)
@@ -89,4 +88,5 @@ class AddBusinessCardActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

@@ -3,18 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable-v24/ic_add.xml" value="0.1" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/background_button_white.xml" value="0.147" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/blue_brackgraound.xml" value="0.147" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/blue_brackground.xml" value="0.147" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/gray_brackground.xml" value="0.147" />
-        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_add_business_card.xml" value="0.25" />
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/ic_cards_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/drawable/ic_close_white.xml" value="0.1" />
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_add_business_card.xml" value="0.33" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_background.xml" value="0.25" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_cards_background.xml" value="0.2" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/activity_pick_tool.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/item_background_card.xml" value="0.25" />
-        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/item_background_cards.xml" value="0.5" />
-        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/item_business_card.xml" value="0.33" />
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/item_background_cards.xml" value="0.33" />
+        <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/layout/item_business_card.xml" value="0.22" />
         <entry key="..\:/Users/loriv/Documents/DIO/Business-Card-main/app/src/main/res/mipmap-anydpi-v26/ic_cards.xml" value="0.147" />
       </map>
     </option>
@@ -24,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

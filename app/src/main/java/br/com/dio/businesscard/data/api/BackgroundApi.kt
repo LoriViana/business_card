@@ -1,13 +1,10 @@
-package br.com.dio.businesscard.data.remote
+package br.com.dio.businesscard.data.api
 
 import br.com.dio.businesscard.data.domain.BackgroundCards
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface BusinessCardApi {
+interface BackgroundApi {
     @GET("background.json")
     fun getBackgroundCards(): Call<List<BackgroundCards>>
-
-
 }

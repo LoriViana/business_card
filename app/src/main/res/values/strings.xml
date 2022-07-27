@@ -13,4 +13,5 @@
     <string name="label_Background">Background</string>
     <string name="cd_background_image">Imagem para fundo dos cartões</string>
     <string name="txt_selecao">Selecione</string>
+    <string name="fechar_novocartao">Fecha a inclusão de cartões</string>
 </resources>
